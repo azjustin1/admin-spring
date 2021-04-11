@@ -1,7 +1,7 @@
 import { stringify } from "query-string";
 import { fetchUtils } from "react-admin";
 
-const apiUrl = "http://localhost:8000/api/admin";
+const apiUrl = "http://localhost:9000/api";
 
 // const httpClient = fetchUtils.fetchJson;
 const httpClient = async (url, options = {}) => {
@@ -9,6 +9,7 @@ const httpClient = async (url, options = {}) => {
 		options.headers = new Headers({ Accept: "application/json" });
 	}
 	const token = await localStorage.getItem("auth");
+	options.headers.set("Content-Type", "application/json");
 	options.headers.set("Authorization", `Bearer ${token}`);
 	return fetchUtils.fetchJson(url, options);
 };
@@ -107,13 +108,15 @@ export default {
 		}).then(({ json }) => ({ data: json }));
 	},
 
-	create: (resource, params) =>
-		httpClient(`${apiUrl}/${resource}`, {
+	create: (resource, params) => {
+		console.log(params.data);
+		return httpClient(`${apiUrl}/${resource}`, {
 			method: "POST",
 			body: JSON.stringify(params.data),
 		}).then(({ json }) => ({
 			data: { ...params.data, id: json.id },
-		})),
+		}));
+	},
 
 	delete: (resource, params) =>
 		httpClient(`${apiUrl}/${resource}/${params.id}`, {

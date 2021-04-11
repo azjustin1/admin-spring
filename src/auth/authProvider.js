@@ -1,6 +1,6 @@
 import inMemoryJWT from "./inMemoryJWT";
 
-let END_POINT = "http://localhost:8000/api";
+let END_POINT = "http://localhost:9000/api";
 
 const authProvider = {
 	login: ({ username, password }) => {

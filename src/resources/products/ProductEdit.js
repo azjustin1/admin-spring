@@ -1,19 +1,23 @@
+import RichTextInput from "ra-input-rich-text";
 import {
-	DateInput,
 	Edit,
 	NumberInput,
+	ReferenceInput,
+	SelectInput,
 	SimpleForm,
 	TextInput,
 } from "react-admin";
-import RichTextInput from "ra-input-rich-text";
 
 export const ProductEdit = (props) => (
 	<Edit {...props}>
 		<SimpleForm>
 			<TextInput source="name" />
-			<NumberInput source="amount" />
-			<DateInput source="created_at" />
-			<DateInput source="updated_at" />
+			<ReferenceInput label="Type" source="id" reference="categories">
+				<SelectInput optionText="name" />
+			</ReferenceInput>
+			<NumberInput source="quantity" />
+			<TextInput source="price" />
+			<TextInput source="fakePrice" />
 			<RichTextInput source="description" />
 		</SimpleForm>
 	</Edit>

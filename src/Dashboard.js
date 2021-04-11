@@ -28,7 +28,6 @@ function Dashboard() {
 					width: "500px",
 					height: "300px",
 					margin: "10px",
-					backgroundColor: "red",
 				}}>
 				<ResponsiveContainer width="100%" height="100%">
 					<AreaChart
@@ -59,7 +58,6 @@ function Dashboard() {
 					width: "500px",
 					height: "300px",
 					margin: "10px",
-					backgroundColor: "red",
 				}}>
 				<ResponsiveContainer width="100%" height="100%">
 					<BarChart width={150} height={40} data={data}>

@@ -1,27 +1,38 @@
 // in src/users.js
 import * as React from "react";
 import {
-	List,
 	Datagrid,
-	TextField,
 	DateField,
-	ShowButton,
-	EditButton,
 	DeleteButton,
-	Filter,
+	EditButton,
+	List,
+	NumberField,
+	ReferenceField,
+	ShowButton,
+	TextField,
+	ChipField,
+	ArrayField,
+	SingleFieldList,
 } from "react-admin";
-
 import { ProductFilter } from "./ProductFilter";
 
 export const ProductList = (props) => (
 	<List filters={<ProductFilter />} {...props}>
-		<Datagrid rowClick="edit">
+		<Datagrid rowClick="show">
 			<TextField source="id" />
 			<TextField source="name" />
-			<TextField source="description" />
-			<TextField source="amount" />
-			<DateField source="created_at" />
-			<DateField source="updated_at" />
+			<ArrayField source="productCategories">
+				<SingleFieldList>
+					<ReferenceField label="Type" source="id" reference="categories">
+						<ChipField source="name" />
+					</ReferenceField>
+				</SingleFieldList>
+			</ArrayField>
+			<TextField source="quantity" />
+			<NumberField source="price" />
+			<NumberField source="fakePrice" />
+			<DateField source="createdAt" />
+			<DateField source="updatedAt" />
 			<ShowButton basePath="products" />
 			<EditButton basePath="products" />
 			<DeleteButton basePath="products" />

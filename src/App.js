@@ -1,32 +1,22 @@
-import * as React from "react";
-import {
-	Admin,
-	fetchUtils,
-	ListGuesser,
-	Resource,
-	SearchInput,
-} from "react-admin";
-import authProvider from "./auth/authProvider";
-import Dashboard from "./Dashboard";
-import { ProductEdit } from "./resources/products/ProductEdit";
-import { ProductList } from "./resources/products/ProductList";
-import { ProductShow } from "./resources/products/ProductShow";
-import { ProductCreate } from "./resources/products/ProductCreate";
-import { ProductFilter } from "./resources/products/ProductFilter";
 import StorageIcon from "@material-ui/icons/Storage";
 import jsonServerProvider from "ra-data-json-server";
+import * as React from "react";
+import { Admin, fetchUtils, ListGuesser, Resource } from "react-admin";
+import authProvider from "./auth/authProvider";
+import Dashboard from "./Dashboard";
+
+// Products
+import { ProductCreate } from "./resources/products/ProductCreate";
+import { ProductEdit } from "./resources/products/ProductEdit";
+import { ProductFilter } from "./resources/products/ProductFilter";
+import { ProductList } from "./resources/products/ProductList";
+import { ProductShow } from "./resources/products/ProductShow";
+
+// Category
+import { CategoryList } from "./resources/categories/CategoryList";
+import { CategoryCreate } from "./resources/categories/CategoryCreate";
+
 import dataProvider from "./data/dataProvider";
-
-// const httpClient = (url, options = {}) => {
-// 	if (!options.headers) {
-// 		options.headers = new Headers({ Accept: "application/json" });
-// 	}
-// 	const { token } = JSON.parse(localStorage.getItem("auth"));
-// 	options.headers.set("Authorization", `Bearer ${token}`);
-// 	return fetchUtils.fetchJson(url, options);
-// };
-
-// let dataProvider = jsonServerProvider("http://localhost:8000/api", httpClient);
 
 const App = () => {
 	return (
@@ -43,7 +33,7 @@ const App = () => {
 				edit={ProductEdit}
 				icon={StorageIcon}
 			/>
-			<Resource name="categories" list={ListGuesser} />
+			<Resource name="categories" list={CategoryList} create={CategoryCreate} />
 		</Admin>
 	);
 };

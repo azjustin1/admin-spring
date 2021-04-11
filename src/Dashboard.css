@@ -1,5 +1,5 @@
 .dashboard {
 	display: flex;
-	background: blue;
+	background: transparent;
 	min-height: 100vh;
 }
